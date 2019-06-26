@@ -1,0 +1,27 @@
+The pilot macro is a token attribute for each pilot because it's different for Nyizin. The normal one:
+
+!pilot {{racer_piloting=[[1d20+@{selected|piloting}]]}} {{racer_name=@{selected|character_id}}} {{bonus=[[(1d2-1)*10]]}}
+
+For Nyizin they can kick their racer into gear so it looks like this:
+
+!pilot {{racer_piloting=[[1d20+@{selected|piloting}]]}} {{racer_name=@{selected|character_id}}} {{bonus=[[(1d2-1)*0]]}} {{extra_speed=?{Kick into gear?|Yes,20|No,0}}}
+
+Laboni's macro needs to ask for the player's piloting bonus, so it looks like this:
+
+!pilot {{racer_piloting=[[1d20+?{Piloting Bonus}]]}} {{racer_name=@{selected|character_id}}} {{bonus=[[(1d2-1)*0]]}}
+
+For shooting we have the racers macros looking like this, but changing the weapon number to 1,2 or 3 for firing different guns:
+
+!shoot {{racer_attack=[[1d20+@{selected|attack}]]}} {{racer_name=@{selected|character_id}}} {{target=?{Target|Laboni|Lemgem|Velocity|Orsis|Nyizin|Ratrod}}} {{weapon_number=1}}
+
+There's a "reset-racers" macro that resets all the positions and generates a random assignment of racers to pilots
+
+!reset {{wot}} {{order= [[1d4]] [[1d3]] [[1d2]]}}
+
+An end-phase macro to reset the piloting penalties
+
+!end_phase {{wot}}
+
+Finally a helper macro to update positions in case the GM needs to manually adjust them
+
+!update_pos
